@@ -1,18 +1,5 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-#registration{
-  height: 10em;
+.registration{
+  height: 11em;
   width: 15em;
   display:inline-flex;
   flex-direction:column;
@@ -21,8 +8,24 @@ code {
   background: linear-gradient(90deg, #EECFBA, powderblue);
   box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);;
 }
-#auth{
-  height: 10em;
+body{
+  height: 100%;
+}
+.container{
+  display: flex;  
+  justify-content: space-between;
+  align-items: center;
+  width: 45em;
+  margin: auto;
+  height: 100vh;
+}
+.vertical-line{
+  border-left: 8px ridge #DADCE1;
+  opacity: 0.3;
+  height: 15em;
+}
+.auth{
+  height: 11em;
   width: 15em;
   display:inline-flex;
   flex-direction:column;
@@ -30,4 +33,11 @@ code {
   align-items: center;
   background: linear-gradient(90deg, powderblue, pink);
   box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);;
+ }
+.todoText{
+  display: inline-block;
+}
+
+.completed{
+  text-decoration:line-through;
 }

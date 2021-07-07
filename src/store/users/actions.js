@@ -1,18 +1,16 @@
-export const setLogin = (login) => {
+export const addLoginPasswordRegistration = (login, password,repeatPassword) => {
     return {
-        type: 'SET_LOGIN',
-        value: login
+        type: 'ADD_LOGIN_PASSWORD',
+        valueLogin: login,
+        valuePassword: password,
+        valueRepeatPassword:repeatPassword
     }
 }
-export const setPassword = (password) => {
+
+export const checkLoginPasswordAuth = (login, password) => {
     return {
-        type: 'SET_PASSWORD',
-        value: password
-    }
-}
-export const setreapetPassword = (password) => {
-    return {
-        type: 'SET_REPEAT_PASSWORD',
-        value: password
+        type: 'CHECK_LOGIN_PASSWORD',
+        valueLogin: login,
+        valuePassword: password
     }
 }
