@@ -1,6 +1,7 @@
 import React from 'react';
+import AuthContainer from '../containers/AuthContainer';
 import {
-  Redirect
+  Redirect, Link, BrowserRouter as Router, Switch
 } from "react-router-dom";
 
 class Input extends React.Component {
@@ -19,18 +20,19 @@ class Input extends React.Component {
       this.props.addTodoItem(this.state.inputData, userId)
     }
   }
-
   render() {
-    const { addTodoItem, userId, users, changeUser } = this.props
-    if (users.changeUser)
-      return <Redirect to='todo234' />
-    return (
-      <div >
-        <input type="text" onChange={this.handleChange} onKeyDown={(e) => this.handleKeyPress(e, userId)} />
-        <button onClick={() => { addTodoItem(this.state.inputData, userId) }}>Add</button>
-        <button onClick={() => { changeUser(users.changeUser) }}>Add2</button>
-      </div>
-    );
+    const { addTodoItem, userId, users, changeUser, isAuth } = this.props
+    
+      return (
+        <div >
+          <input type="text" onChange={this.handleChange} onKeyDown={(e) => this.handleKeyPress(e, userId)} />
+          <button onClick={() => { addTodoItem(this.state.inputData, userId) }}>Add</button>
+          <Link to='/'><button onClick={() => { changeUser(users.changeUser) }}>Add2</button></Link>
+        </div>
+      );
+    
+    
+
   }
 }
 

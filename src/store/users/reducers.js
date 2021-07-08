@@ -27,8 +27,7 @@ export const usersReducer = (state = initialState, action) => {
       }
       return false
     })
-    if (user) {
-      console.log(user)
+    if (user.length!==0) {
       return {
         ...state,
         isAuth: true,
@@ -43,7 +42,8 @@ export const usersReducer = (state = initialState, action) => {
   if (action.type === 'CHANGE_USER') {
     return {
       ...state,
-      changeUser: !action.changeUser
+      changeUser: !action.changeUser,
+      isAuth:false
     }
   }
   return state

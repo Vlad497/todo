@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 class Registration extends React.Component {
     constructor(props) {
@@ -38,7 +39,7 @@ class Registration extends React.Component {
                     <input type='password' name='repeatPassword' autoComplete='off' placeholder='Repeat password' spellCheck='false' onChange={this.handleChangeRepeatPassword} />
                 </div>
                 <div>
-                    <button onClick={() => handleSignUp(this.state.login, this.state.password, this.state.repeatPassword)}>Sign Up</button>
+                    <Link to='todo'><button onClick={() => handleSignUp(this.state.login, this.state.password, this.state.repeatPassword)}>Sign Up</button></Link>
                 </div>
             </div>
         )

@@ -4,36 +4,32 @@ import React from 'react'
 import InputContainer from './containers/InputContainer'
 import TodoListContainer from './containers/TodoListContainer'
 import {
-  BrowserRouter as Router,
-  Switch,
+  BrowserRouter,
   Route,
-  Link
 } from "react-router-dom";
 
 
 class App extends React.Component {
   render() {
     return (
-      <Router>
-        <div>
-          <Switch>
-            <Route exact path="/">
-              <div className='container'>
-                <RegistrationContainer />
-                <div className='vertical-line'></div>
-                <AuthContainer />
-              </div>
-            </Route>
-             <Route path="/todo">
-              <InputContainer />
-              <TodoListContainer />
-            </Route> 
-            <Route path="/todo234">
+
+      <BrowserRouter>
+        <Route exact path="/">
+          <div className='container'>
+            <RegistrationContainer />
+            <div className='vertical-line'></div>
             <AuthContainer />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+          </div>
+        </Route>
+        <Route path="/todo">
+          <InputContainer />
+          <TodoListContainer />
+        </Route>
+        <Route path="/todo234">
+          <AuthContainer />
+        </Route>
+      </BrowserRouter>
+
     )
   }
 }

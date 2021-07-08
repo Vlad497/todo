@@ -1,6 +1,7 @@
 import React from 'react'
 import InputContainer from '../containers/InputContainer'
 import TodoListContainer from '../containers/TodoListContainer'
+import { Link } from 'react-router-dom';
 
 import {
     Redirect
@@ -28,9 +29,7 @@ class Auth extends React.Component {
 
 
     render() {
-         const { checkLoginPasswordAuth, isAuth } = this.props
-        if (isAuth)
-            return <Redirect to='todo' /> 
+        const { checkLoginPasswordAuth, isAuth } = this.props
             
         return (
             <div className='auth'>
@@ -42,7 +41,7 @@ class Auth extends React.Component {
                     <input type='passsword' name='passsword' autoComplete='off' spellCheck='false' onChange={this.handleChangePassword} />
                 </div>
                 <div>
-                    <button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button>
+                <Link to='todo'><button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button></Link>
                 </div>
             </div>
         )
