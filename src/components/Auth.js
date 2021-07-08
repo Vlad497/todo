@@ -41,7 +41,7 @@ class Auth extends React.Component {
                     <input type='passsword' name='passsword' autoComplete='off' spellCheck='false' onChange={this.handleChangePassword} />
                 </div>
                 <div>
-                <Link to='todo'><button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button></Link>
+                <Link to='/main'><button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button></Link>
                 </div>
             </div>
         )

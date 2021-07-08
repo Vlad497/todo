@@ -3,35 +3,32 @@ import RegistrationContainer from './containers/RegistrationContainer'
 import React from 'react'
 import InputContainer from './containers/InputContainer'
 import TodoListContainer from './containers/TodoListContainer'
+import { connect } from 'react-redux'
 import {
   BrowserRouter,
   Route,
+  Switch
 } from "react-router-dom";
 
 
 class App extends React.Component {
   render() {
     return (
-
       <BrowserRouter>
-        <Route exact path="/">
-          <div className='container'>
+        <Route path="/main">
+          {this.props.isAuth ? <div><InputContainer/><TodoListContainer/></div> :<div className='container'>
             <RegistrationContainer />
             <div className='vertical-line'></div>
             <AuthContainer />
-          </div>
-        </Route>
-        <Route path="/todo">
-          <InputContainer />
-          <TodoListContainer />
-        </Route>
-        <Route path="/todo234">
-          <AuthContainer />
+          </div>}
         </Route>
       </BrowserRouter>
-
     )
   }
 }
-
-export default App
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.users.isAuth
+  }
+}
+export default connect(mapStateToProps)(App)
