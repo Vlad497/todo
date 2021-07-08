@@ -7,11 +7,10 @@ const initialState = {
 
 export const usersReducer = (state = initialState, action) => {
   if (action.type === 'ADD_LOGIN_PASSWORD' && (action.valuePassword === action.valueRepeatPassword)) {
-    let obj = {}
     let inputLogin = action.valueLogin
     let inputPassword = action.valuePassword
     let id = Math.floor(Math.random() * 1000)
-    obj = { inputLogin, inputPassword, id }
+    let obj = { inputLogin, inputPassword, id }
     console.log(obj)
     return {
       ...state,
@@ -21,13 +20,15 @@ export const usersReducer = (state = initialState, action) => {
     }
   }
   if (action.type === 'CHECK_LOGIN_PASSWORD') {
-    let user = state.users.filter(el => {
+    const users = state.users.filter(el => {
       if (el.inputLogin === action.valueLogin && el.inputPassword === action.valuePassword) {
         return true
       }
       return false
     })
-    if (user.length!==0) {
+    const user=users[0]
+    console.log(user)
+    if (typeof(user)!=='undefined') {
       return {
         ...state,
         isAuth: true,

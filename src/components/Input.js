@@ -1,8 +1,5 @@
 import React from 'react';
-import AuthContainer from '../containers/AuthContainer';
-import {
-  Redirect, Link, BrowserRouter as Router, Switch
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Input extends React.Component {
   constructor(props) {
@@ -22,16 +19,16 @@ class Input extends React.Component {
   }
   render() {
     const { addTodoItem, userId, users, changeUser, isAuth } = this.props
-    
-      return (
-        <div >
-          <input type="text" onChange={this.handleChange} onKeyDown={(e) => this.handleKeyPress(e, userId)} />
-          <button onClick={() => { addTodoItem(this.state.inputData, userId) }}>Add</button>
-          <Link to='/'><button onClick={() => { changeUser(users.changeUser) }}>Add2</button></Link>
-        </div>
-      );
-    
-    
+
+    return (
+      <div >
+        <input type="text" onChange={this.handleChange} onKeyDown={(e) => this.handleKeyPress(e, userId)} />
+        <button onClick={() => { addTodoItem(this.state.inputData, userId) }}>Add</button>
+        <Link to='/main'><button onClick={() => { changeUser(users.changeUser) }}>Add2</button></Link>
+      </div>
+    );
+
+
 
   }
 }

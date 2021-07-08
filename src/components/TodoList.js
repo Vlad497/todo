@@ -4,7 +4,6 @@ class TodoList extends React.Component {
   render() {
 
     const { todo, removeTodoItem,changeTodoItem } = this.props
-
     return (
       <div>
         {
