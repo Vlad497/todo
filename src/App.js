@@ -10,17 +10,7 @@ import {
   Link
 } from "react-router-dom";
 
-/*  class App extends React.Component {
-  render() {
-    return (
-      <div className='container'>
-        <InputContainer />
-         <div className='vertical-line'></div>
-        <TodoListContainer />
-      </div>
-    )
-  }
-}  */
+
 class App extends React.Component {
   render() {
     return (
@@ -38,6 +28,9 @@ class App extends React.Component {
               <InputContainer />
               <TodoListContainer />
             </Route> 
+            <Route path="/todo234">
+            <AuthContainer />
+            </Route>
           </Switch>
         </div>
       </Router>

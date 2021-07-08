@@ -3,15 +3,18 @@ import { connect } from 'react-redux'
 import Input from '../components/Input'
 import { bindActionCreators } from 'redux';
 import { addTodoItem } from '../store/todoListForm/actions'
+import {changeUser} from '../store/users/actions'
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addTodoItem: bindActionCreators(addTodoItem, dispatch)
+    addTodoItem: bindActionCreators(addTodoItem, dispatch),
+    changeUser: bindActionCreators(changeUser, dispatch)
   }
 }
-const mapStateToProps = (state) => {/* 
-   const todo=state.todoListReducer.filter(todo=>state.usersReducer.map(user=>user.id).filter(id=>id===todo.id))  */
+const mapStateToProps = (state) => { 
   return { 
+    users:state.users,
+    userId:state.users.currentUser.id
   }
 }
 

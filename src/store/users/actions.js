@@ -14,3 +14,10 @@ export const checkLoginPasswordAuth = (login, password) => {
         valuePassword: password
     }
 }
+export const changeUser=(change)=>{
+    console.log(change)
+    return {
+        type:'CHANGE_USER',
+        changeUser:change
+    }
+}

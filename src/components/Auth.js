@@ -28,9 +28,9 @@ class Auth extends React.Component {
 
 
     render() {
-        const { checkLoginPasswordAuth, isAuth } = this.props
+         const { checkLoginPasswordAuth, isAuth } = this.props
         if (isAuth)
-            return <Redirect to='todo' />
+            return <Redirect to='todo' /> 
             
         return (
             <div className='auth'>

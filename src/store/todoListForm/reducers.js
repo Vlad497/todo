@@ -8,7 +8,7 @@ export const todoListReducer = (state = initialState, action) => {
     let inputValue = action.value
     let id = Math.floor(Math.random() * 1000)
     let complete = false
-    obj = { inputValue, id, complete, userId: inputValue.id }
+    obj = { inputValue, id, complete,userId:action.userId }
     return {
       ...state,
       data: [...state.data, obj]

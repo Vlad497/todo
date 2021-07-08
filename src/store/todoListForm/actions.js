@@ -5,10 +5,11 @@ export const removeTodoItem = (id) => {
     }
 }
 
-export const addTodoItem = (userInput) => {
+export const addTodoItem = (userInput, id) => {
     return {
         type: 'ADD_TODO_ITEM',
-        value: userInput
+        value: userInput,
+        userId: id
     }
 }
 

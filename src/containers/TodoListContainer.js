@@ -5,8 +5,9 @@ import { bindActionCreators } from 'redux';
 import { removeTodoItem,changeTodoItem } from '../store/todoListForm/actions'
 
 const mapStateToProps = (state) => {
+    const todo=state.todoList.data.filter(todo=>state.users.currentUser.id===todo.userId) 
     return {
-        todo: state.todoList.data
+        todo: todo
     }
 }
 const mapDispatchToProps = (dispatch) => {

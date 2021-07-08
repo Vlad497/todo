@@ -3,6 +3,7 @@ import { routerMiddleware } from "connected-react-router";
 import { logger } from "redux-logger";
 import history from "./history";
 import rootReducer from "./reducer";
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 const initialState = {};
 
@@ -17,7 +18,7 @@ const composeEnhancers =
 const store = createStore(
     rootReducer,
     initialState,
-    composeEnhancers(applyMiddleware(...middleWare))
+    composeEnhancers(applyMiddleware(...middleWare),composeWithDevTools())
 );
 
 export default store;

@@ -22,7 +22,8 @@ class Registration extends React.Component {
         this.state.repeatPassword = e.target.value
     }
     render() {
-        const { handleSignUp } = this.props
+         const { handleSignUp,isAuth } = this.props
+        
         return (
             <div className='registration'>
                 <h3>Sign up</h3>
