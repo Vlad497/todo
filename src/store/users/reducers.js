@@ -2,16 +2,17 @@ const initialState = {
   isAuth: false,
   currentUser: null,
   users: [],
-  changeUser: false
+  changeUser: false,
+  checkPassword: 1,
+  checkUser: ''
 }
 
 export const usersReducer = (state = initialState, action) => {
-  if (action.type === 'ADD_LOGIN_PASSWORD' && (action.valuePassword === action.valueRepeatPassword)) {
+  if (action.type === 'ADD_LOGIN_PASSWORD' && (state.checkPassword === 1)) {
     let inputLogin = action.valueLogin
     let inputPassword = action.valuePassword
     let id = Math.floor(Math.random() * 1000)
     let obj = { inputLogin, inputPassword, id }
-    console.log(obj)
     return {
       ...state,
       isAuth: true,
@@ -26,26 +27,59 @@ export const usersReducer = (state = initialState, action) => {
       }
       return false
     })
-    const user=users[0]
+    const user = users[0]
     console.log(user)
-    if (typeof(user)!=='undefined') {
+    if (typeof (user) !== 'undefined') {
       return {
         ...state,
         isAuth: true,
-        currentUser: user
+        currentUser: user,
+        checkPassword:1
       }
     }
     return {
       ...state,
-      isAuth: false
+      isAuth: false,
+      checkPassword:5
     }
   }
   if (action.type === 'CHANGE_USER') {
     return {
       ...state,
       changeUser: !action.changeUser,
-      isAuth:false
+      isAuth: false
     }
   }
-  return state
+  if (action.type === 'CHECK_PASSWORD') {
+    const letter = /[a-z]/;
+    const upper = /[A-Z]/;
+    const number = /[0-9]/;
+    const pass = action.valuePassword
+    const repeatPass = action.valueRepeatPassword
+    let checkPassword = 1
+
+    if (pass.length < 6 || !letter.test(pass) || !number.test(pass) || !upper.test(pass)) {
+      checkPassword = 2
+    } else {
+      if (pass !== repeatPass) {
+        checkPassword = 3
+      } else {
+        const users = state.users.filter(el => {
+          if (el.inputLogin === action.valueLogin) {
+            return true
+          }
+          return false
+        })
+
+        const user = users[0]
+        
+        typeof (user) !== 'undefined' ? checkPassword = 4 : checkPassword = 1
+      }
+    }
+  return {
+    ...state,
+    checkPassword: checkPassword
+  }
+}
+return state
 }

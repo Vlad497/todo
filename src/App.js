@@ -15,8 +15,8 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <Route path="/main">
-          {this.props.isAuth ? <div><InputContainer/><TodoListContainer/></div> :<div className='container'>
+        <Route path="/">
+          {this.props.isAuth ? <div className='containerInputTodo'><InputContainer/><TodoListContainer/></div> :<div className='containerRegAuth'>
             <RegistrationContainer />
             <div className='vertical-line'></div>
             <AuthContainer />

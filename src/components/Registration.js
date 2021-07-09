@@ -7,8 +7,8 @@ class Registration extends React.Component {
 
         this.state = {
             login: '',
-            passsword: '',
-            repeatPasssword: ''
+            password: '',
+            repeatPassword: ''
         }
     }
     handleChangeLogin = (e) => {
@@ -22,26 +22,36 @@ class Registration extends React.Component {
     handleChangeRepeatPassword = (e) => {
         this.state.repeatPassword = e.target.value
     }
-    render() {
-         const { handleSignUp,isAuth } = this.props
-        
-        return (
-            <div className='registration'>
-                <h3>Sign up</h3>
 
+    checkPassword = () => {
+        this.props.checkPasswordValidity(this.state.login,this.state.password, this.state.repeatPassword)
+        this.props.handleSignUp(this.state.login, this.state.password, this.state.repeatPassword) 
+    }
+    render() {
+        const { handleSignUp, isAuth, checkPassword, checkPasswordValidity } = this.props
+
+        return (
+            <form className='registration' id='reg'>
+                <h3>Sign up</h3>
                 <div>
-                    <input type='text' name='login' autoComplete='off' spellCheck='false' onChange={this.handleChangeLogin} />
+                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' spellCheck='false' onChange={this.handleChangeLogin} />
                 </div>
                 <div>
-                    <input type='password' name='password' autoComplete='off' spellCheck='false' onChange={this.handleChangePassword} />
+                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
                 </div>
                 <div>
                     <input type='password' name='repeatPassword' autoComplete='off' placeholder='Repeat password' spellCheck='false' onChange={this.handleChangeRepeatPassword} />
                 </div>
                 <div>
-                    <Link to='/main'><button onClick={() => handleSignUp(this.state.login, this.state.password, this.state.repeatPassword)}>Sign Up</button></Link>
+                    {checkPassword === 2 ? <span>The password must be more than 6 characters, include upper and lower case characters, and must include at least one digit.</span> :
+                        checkPassword === 3 ? <span>Passwords must match</span> :
+                        checkPassword === 4 ?<span>The user with this login is already registered</span>:
+                        ''}
                 </div>
-            </div>
+                <div>
+                    <Link to='/'><button onClick={this.checkPassword}>Sign Up</button></Link>
+                </div>
+            </form>
         )
     }
 }

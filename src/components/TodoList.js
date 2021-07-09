@@ -8,11 +8,11 @@ class TodoList extends React.Component {
       <div>
         {
           todo.map(el =>
-            <div key={el.id}>
+            <div key={el.id} className='containerTodo'>
               <li className={el.complete ? "completed todoText" : "todoText"} onClick={() => { removeTodoItem(el.id) }}
                 >
                 {el.inputValue}
-              </li> <input type='checkbox' onChange={()=>{changeTodoItem(el.id)}}/>
+              </li> <input className='form-check-input mt-0' type='checkbox' onChange={()=>{changeTodoItem(el.id)}}/>
             </div>)
         }
       </div>

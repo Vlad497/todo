@@ -1,38 +1,52 @@
-.registration{
-  height: 11em;
-  width: 15em;
+.registration,.auth{
+  min-height: 30em;
+  width: 30em;
   display:inline-flex;
   flex-direction:column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
   background: linear-gradient(90deg, #EECFBA, powderblue);
-  box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);;
+  box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);
+  padding: 0 5px;
+}
+span{
+  font-family: cursive;
+  color:rgb(202, 29, 29);
 }
 body{
   height: 100%;
 }
-.container{
+.containerInputTodo{
+  width: 30em;
+  margin: 0 auto;
+
+}
+.containerInput{
+  margin-top: 10%;
+}
+.containerInput input{
+  width: 100%;
+}
+.containerInput>a{
+  position: fixed;
+  left:5em;
+  top:1em;
+}
+.containerRegAuth{
   display: flex;  
   justify-content: space-between;
   align-items: center;
-  width: 45em;
+  width: 80em;
   margin: auto;
   height: 100vh;
 }
 .vertical-line{
   border-left: 8px ridge #DADCE1;
   opacity: 0.3;
-  height: 15em;
+  height: 30em;
 }
 .auth{
-  height: 11em;
-  width: 15em;
-  display:inline-flex;
-  flex-direction:column;
-  justify-content: space-around;
-  align-items: center;
   background: linear-gradient(90deg, powderblue, pink);
-  box-shadow: 5px 10px 20px rgba(0,0,0,0.3), -5px -10px 20px rgba(255,255,255,0.5);;
  }
 .todoText{
   display: inline-block;
@@ -40,4 +54,16 @@ body{
 
 .completed{
   text-decoration:line-through;
+}
+form>div{
+  width:60%;
+  text-align: center;
+}
+form>div>input{
+  width: 100%;
+}
+.containerTodo{
+  margin-top: 1em;
+  display: flex;
+  justify-content: space-between;
 }
