@@ -3,7 +3,7 @@ const initialState = {
 }
 
 export const todoListReducer = (state = initialState, action) => {
-  if (action.type === 'ADD_TODO_ITEM') {
+  if (action.type === 'ADD_TODO_ITEM' && action.value!=='') {
     let obj = {}
     let inputValue = action.value
     let id = Math.floor(Math.random() * 1000)

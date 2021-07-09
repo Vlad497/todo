@@ -29,21 +29,25 @@ class Auth extends React.Component {
 
 
     render() {
-        const { checkLoginPasswordAuth, isAuth } = this.props
+        const { checkLoginPasswordAuth, isAuth,checkPassword } = this.props
             
         return (
-            <div className='auth'>
+            <form className='auth'>
                 <h3>Sign In</h3>
                 <div>
-                    <input type='text' name='login' autoComplete='off' spellCheck='false' onChange={this.handleChangeLogin} />
+                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' spellCheck='false' onChange={this.handleChangeLogin} />
                 </div>
                 <div>
-                    <input type='passsword' name='passsword' autoComplete='off' spellCheck='false' onChange={this.handleChangePassword} />
+                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
                 </div>
                 <div>
-                <Link to='/main'><button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button></Link>
+                {checkPassword === 5 ? <span>Invalid username or password.</span> :
+                        ''}
                 </div>
-            </div>
+                <div>
+                <Link to='/'><button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button></Link>
+                </div>
+            </form>
         )
     }
 }

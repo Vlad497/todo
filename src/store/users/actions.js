@@ -21,3 +21,11 @@ export const changeUser=(change)=>{
         changeUser:change
     }
 }
+export const checkPasswordValidity=(login,password,repeatPassword)=>{
+    return {
+        type:'CHECK_PASSWORD',
+        valueLogin: login,
+        valuePassword: password,
+        valueRepeatPassword:repeatPassword
+    }
+}

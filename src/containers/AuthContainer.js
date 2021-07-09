@@ -11,7 +11,8 @@ const mapDispatchToProps = (dispatch) => {
   }
   const mapStateToProps = (state) => {
     return {
-      isAuth: state.users.isAuth
+      isAuth: state.users.isAuth,
+      checkPassword:state.users.checkPassword
     }
   }
 

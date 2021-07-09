@@ -15,16 +15,23 @@ class Input extends React.Component {
   handleKeyPress(e, userId) {
     if (e.key === "Enter") {
       this.props.addTodoItem(this.state.inputData, userId)
+      document.getElementById('inputTodo').value=''
     }
+  }
+  checkEmptyInput=()=>{
+    if(document.getElementById('inputTodo').value!==''){
+      this.props.addTodoItem(this.state.inputData, this.props.userId)
+    }
+    document.getElementById('inputTodo').value='' 
   }
   render() {
     const { addTodoItem, userId, users, changeUser, isAuth } = this.props
 
     return (
-      <div >
-        <input type="text" onChange={this.handleChange} onKeyDown={(e) => this.handleKeyPress(e, userId)} />
-        <button onClick={() => { addTodoItem(this.state.inputData, userId) }}>Add</button>
-        <Link to='/main'><button onClick={() => { changeUser(users.changeUser) }}>Add2</button></Link>
+      <div className='containerInput input-group mb-3'>
+        <input className='form-control' id='inputTodo' type="text" onChange={this.handleChange} placeholder='Enter the task text' onKeyDown={(e) => this.handleKeyPress(e, userId)} />
+        <button className='btn btn-outline-secondary' onClick={this.checkEmptyInput}>Add</button>
+        <Link to='/'><button className='btn btn-secondary btn-sm' onClick={() => { changeUser(users.changeUser) }}>Change user</button></Link>
       </div>
     );
 
