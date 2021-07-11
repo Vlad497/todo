@@ -14,18 +14,20 @@ class Input extends React.Component {
   }
   handleKeyPress(e, userId) {
     if (e.key === "Enter") {
-      this.props.addTodoItem(this.state.inputData, userId)
-      document.getElementById('inputTodo').value=''
+      if (document.getElementById('inputTodo').value !== '') {
+        this.props.addTodoItem(this.state.inputData, userId)
+      }
+      document.getElementById('inputTodo').value = ''
     }
   }
-  checkEmptyInput=()=>{
-    if(document.getElementById('inputTodo').value!==''){
+  checkEmptyInput = () => {
+    if (document.getElementById('inputTodo').value !== '') {
       this.props.addTodoItem(this.state.inputData, this.props.userId)
     }
-    document.getElementById('inputTodo').value='' 
+    document.getElementById('inputTodo').value = ''
   }
   render() {
-    const { addTodoItem, userId, users, changeUser, isAuth } = this.props
+    const { userId, users, changeUser } = this.props
 
     return (
       <div className='containerInput input-group mb-3'>

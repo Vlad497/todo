@@ -1,11 +1,6 @@
 import React from 'react'
-import InputContainer from '../containers/InputContainer'
-import TodoListContainer from '../containers/TodoListContainer'
 import { Link } from 'react-router-dom';
 
-import {
-    Redirect
-} from "react-router-dom";
 
 class Auth extends React.Component {
 
@@ -26,10 +21,8 @@ class Auth extends React.Component {
     }
 
 
-
-
     render() {
-        const { checkLoginPasswordAuth, isAuth,checkPassword } = this.props
+        const { checkLoginPasswordAuth,checkingErrorPassword } = this.props
             
         return (
             <form className='auth'>
@@ -41,7 +34,7 @@ class Auth extends React.Component {
                     <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
                 </div>
                 <div>
-                {checkPassword === 5 ? <span>Invalid username or password.</span> :
+                {checkingErrorPassword === 5 ? <span>Invalid username or password.</span> :
                         ''}
                 </div>
                 <div>

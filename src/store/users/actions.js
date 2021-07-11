@@ -15,17 +15,21 @@ export const checkLoginPasswordAuth = (login, password) => {
     }
 }
 export const changeUser=(change)=>{
-    console.log(change)
     return {
         type:'CHANGE_USER',
-        changeUser:change
+        changingUser:change
     }
 }
-export const checkPasswordValidity=(login,password,repeatPassword)=>{
+export const checkPasswordValidity=(password,repeatPassword)=>{
     return {
         type:'CHECK_PASSWORD',
-        valueLogin: login,
         valuePassword: password,
         valueRepeatPassword:repeatPassword
+    }
+}
+export const checkLoginValidity=(login)=>{
+    return {
+        type:'CHECK_LOGIN',
+        valueLogin: login
     }
 }

@@ -12,14 +12,14 @@
 span{
   font-family: cursive;
   color:rgb(202, 29, 29);
+  font-size:0.8em;
 }
 body{
-  height: 100%;
+  background-color: #eec9adea;
 }
 .containerInputTodo{
   width: 30em;
   margin: 0 auto;
-
 }
 .containerInput{
   margin-top: 10%;

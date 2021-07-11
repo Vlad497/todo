@@ -23,12 +23,13 @@ class Registration extends React.Component {
         this.state.repeatPassword = e.target.value
     }
 
-    checkPassword = () => {
-        this.props.checkPasswordValidity(this.state.login,this.state.password, this.state.repeatPassword)
+    checkInputDataValidity = () => {
+        this.props.checkLoginValidity(this.state.login)
+        this.props.checkPasswordValidity(this.state.password, this.state.repeatPassword)
         this.props.handleSignUp(this.state.login, this.state.password, this.state.repeatPassword) 
     }
     render() {
-        const { handleSignUp, isAuth, checkPassword, checkPasswordValidity } = this.props
+        const { checkingErrorPassword,checkingErrorLogin } = this.props
 
         return (
             <form className='registration' id='reg'>
@@ -37,19 +38,23 @@ class Registration extends React.Component {
                     <input type='text' name='login' autoComplete='off' placeholder='Enter login' spellCheck='false' onChange={this.handleChangeLogin} />
                 </div>
                 <div>
+                    {checkingErrorLogin === 2 ? <span>Check the correctness of the login</span> :
+                    checkingErrorLogin === 3 ?<span>The user with this login is already registered</span>:     
+                        ''}
+                </div>
+                <div>
                     <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
                 </div>
                 <div>
                     <input type='password' name='repeatPassword' autoComplete='off' placeholder='Repeat password' spellCheck='false' onChange={this.handleChangeRepeatPassword} />
                 </div>
                 <div>
-                    {checkPassword === 2 ? <span>The password must be more than 6 characters, include upper and lower case characters, and must include at least one digit.</span> :
-                        checkPassword === 3 ? <span>Passwords must match</span> :
-                        checkPassword === 4 ?<span>The user with this login is already registered</span>:
+                    {checkingErrorPassword === 2 ? <span>The password must be more than 6 characters, include upper and lower case characters, and must include at least one digit.</span> :
+                        checkingErrorPassword === 3 ? <span>Passwords must match</span> :
                         ''}
                 </div>
                 <div>
-                    <Link to='/'><button onClick={this.checkPassword}>Sign Up</button></Link>
+                    <Link to='/'><button onClick={this.checkInputDataValidity}>Sign Up</button></Link>
                 </div>
             </form>
         )
