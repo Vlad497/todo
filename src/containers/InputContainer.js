@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import Input from '../components/Input'
 import { bindActionCreators } from 'redux';
@@ -13,7 +12,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
     return {
-      isAuth: state.users.isAuth,
       users: state.users,
       userId: state.users.currentUser.id
     }

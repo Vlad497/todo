@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => {
   const mapStateToProps = (state) => {
     return {
       isAuth: state.users.isAuth,
-      checkPassword:state.users.checkPassword
+      checkingErrorPassword:state.users.checkingErrorPassword
     }
   }
 
