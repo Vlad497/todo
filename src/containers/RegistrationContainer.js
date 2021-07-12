@@ -1,21 +1,18 @@
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Registration from '../components/Registration'
 import { bindActionCreators } from 'redux';
-import {addLoginPasswordRegistration,checkPasswordValidity,checkLoginValidity} from '../store/users/actions'
+import { addLoginPasswordRegistration } from '../store/users/actions'
 
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        handleSignUp: bindActionCreators(addLoginPasswordRegistration, dispatch),
-        checkPasswordValidity:bindActionCreators(checkPasswordValidity,dispatch),
-        checkLoginValidity:bindActionCreators(checkLoginValidity,dispatch)
-    }
+  return {
+    handleSignUp: bindActionCreators(addLoginPasswordRegistration, dispatch)
   }
-  const mapStateToProps = (state) => {
-    return {
-      checkingErrorPassword:state.users.checkingErrorPassword,
-      checkingErrorLogin:state.users.checkingErrorLogin
-    }
+}
+const mapStateToProps = (state) => {
+  return {
+    singUpError: state.users.singUpError
   }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

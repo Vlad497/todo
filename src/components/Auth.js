@@ -9,36 +9,43 @@ class Auth extends React.Component {
 
         this.state = {
             login: '',
-            passsword: ''
+            password: '',
+            error: false
         }
     }
-    handleChangeLogin = (e) => {
-        this.state.login = e.target.value
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
-    handleChangePassword = (e) => {
-        this.state.password = e.target.value
+    checkInputDataValidity = () => {
+        this.props.checkLoginPasswordAuth(this.state.login, this.state.password)
+        if (!this.props.isAuth) {
+            this.setState({
+                error: true
+            })
+        }
     }
-
 
     render() {
-        const { checkLoginPasswordAuth,checkingErrorPassword } = this.props
-            
+
         return (
             <form className='auth'>
                 <h3>Sign In</h3>
                 <div>
-                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' spellCheck='false' onChange={this.handleChangeLogin} />
+                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' value={this.state.login} spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
+                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' value={this.state.password} spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                {checkingErrorPassword === 5 ? <span>Invalid username or password.</span> :
+                    {this.state.error ? <span>Invalid username or password.</span> :
                         ''}
                 </div>
                 <div>
-                <Link to='/'><button onClick={() => checkLoginPasswordAuth(this.state.login, this.state.password)}>Sign In</button></Link>
+                    <Link to='/'><button onClick={this.checkInputDataValidity}>Sign In</button></Link>
                 </div>
             </form>
         )

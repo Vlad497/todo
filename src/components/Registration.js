@@ -8,50 +8,92 @@ class Registration extends React.Component {
         this.state = {
             login: '',
             password: '',
-            repeatPassword: ''
+            repeatPassword: '',
+            errors: {
+                login: false,
+                password: false,
+                repeatPassword: false
+            }
         }
     }
-    handleChangeLogin = (e) => {
-        this.state.login = e.target.value
+
+    handleChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
-    handleChangePassword = (e) => {
-        this.state.password = e.target.value
+    checkLoginValidity = (login) => {
+        let isValid = true
+        const whitespace = /\s/g;
+        if (whitespace.test(login)) {
+            this.setState({
+                errors: {
+                    login: true
+                }
+            })
+            isValid = false
+        } else {
+            this.setState({
+                errors: {
+                    login: false
+                }
+            })
+        }
+        return isValid
     }
-
-    handleChangeRepeatPassword = (e) => {
-        this.state.repeatPassword = e.target.value
+    checkPasswordValidity = (password, repeatPassword) => {
+        let isValid = true
+        const letter = /[a-z]/;
+        const upper = /[A-Z]/;
+        const number = /[0-9]/;
+        if (password.length < 6 || !letter.test(password) || !number.test(password) || !upper.test(password)) {
+            this.setState({
+                errors: {
+                    password: true
+                }
+            })
+            isValid = false
+            return isValid
+        } else if (password !== repeatPassword) {
+            this.setState({
+                errors: {
+                    repeatPassword: true
+                }
+            })
+            isValid = false
+        }
+        return isValid
     }
 
     checkInputDataValidity = () => {
-        this.props.checkLoginValidity(this.state.login)
-        this.props.checkPasswordValidity(this.state.password, this.state.repeatPassword)
-        this.props.handleSignUp(this.state.login, this.state.password, this.state.repeatPassword) 
+        const isValidLogin = this.checkLoginValidity(this.state.login)
+        const isValidPasswords = this.checkPasswordValidity(this.state.password, this.state.repeatPassword)
+        if (isValidLogin && isValidPasswords) { this.props.handleSignUp(this.state.login, this.state.password, this.state.repeatPassword) }
     }
     render() {
-        const { checkingErrorPassword,checkingErrorLogin } = this.props
 
         return (
             <form className='registration' id='reg'>
                 <h3>Sign up</h3>
                 <div>
-                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' spellCheck='false' onChange={this.handleChangeLogin} />
+                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' value={this.state.login} spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                    {checkingErrorLogin === 2 ? <span>Check the correctness of the login</span> :
-                    checkingErrorLogin === 3 ?<span>The user with this login is already registered</span>:     
-                        ''}
+                    {this.state.errors.login ? <span>Check the correctness of the login</span> :
+                        !!this.props.singUpError ? <span>{this.props.singUpError}</span> :
+                            ''}
                 </div>
                 <div>
-                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
+                    <input type='password' name='password' autoComplete='off' value={this.state.password} placeholder='Enter password' spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                    <input type='password' name='repeatPassword' autoComplete='off' placeholder='Repeat password' spellCheck='false' onChange={this.handleChangeRepeatPassword} />
+                    <input type='password' name='repeatPassword' autoComplete='off' value={this.state.repeatPassword} placeholder='Repeat password' spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                    {checkingErrorPassword === 2 ? <span>The password must be more than 6 characters, include upper and lower case characters, and must include at least one digit.</span> :
-                        checkingErrorPassword === 3 ? <span>Passwords must match</span> :
-                        ''}
+                    {this.state.errors.password ? <span>The password must be more than 6 characters, include upper and lower case characters, and must include at least one digit.</span> :
+                        this.state.errors.repeatPassword ? <span>Passwords must match</span> :
+                            ''}
                 </div>
                 <div>
                     <Link to='/'><button onClick={this.checkInputDataValidity}>Sign Up</button></Link>
