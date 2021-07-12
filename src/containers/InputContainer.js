@@ -12,7 +12,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 const mapStateToProps = (state) => {
     return {
-      users: state.users,
       userId: state.users.currentUser.id
     }
 }
