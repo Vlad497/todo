@@ -33,7 +33,8 @@ export const usersReducer = (state = initialState, action) => {
     return {
       ...state,
       isAuth: !!user,
-      currentUser: user
+      currentUser: user,
+      singUpError:'' 
     }
   }
   if (action.type === 'CHANGE_USER') {

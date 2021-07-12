@@ -13,17 +13,13 @@ class Auth extends React.Component {
             error: false
         }
     }
-    handleChangeLogin = (e) => {
+
+    handleChange = (event) => {
         this.setState({
-            login:e.target.value
+            [event.target.name]: event.target.value
         })
     }
 
-    handleChangePassword = (e) => {
-        this.setState({
-            password:e.target.value
-        })
-    }
     checkInputDataValidity = () => {
         this.props.checkLoginPasswordAuth(this.state.login, this.state.password)
         if (!this.props.isAuth) {
@@ -39,10 +35,10 @@ class Auth extends React.Component {
             <form className='auth'>
                 <h3>Sign In</h3>
                 <div>
-                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' spellCheck='false' onChange={this.handleChangeLogin} />
+                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' value={this.state.login} spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
+                    <input type='password' name='password' autoComplete='off' placeholder='Enter password' value={this.state.password} spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
                     {this.state.error ? <span>Invalid username or password.</span> :

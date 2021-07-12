@@ -16,21 +16,10 @@ class Registration extends React.Component {
             }
         }
     }
-    handleChangeLogin = (e) => {
-        this.setState({
-            login: e.target.value
-        })
-    }
 
-    handleChangePassword = (e) => {
+    handleChange = (event) => {
         this.setState({
-            password: e.target.value
-        })
-    }
-
-    handleChangeRepeatPassword = (e) => {
-        this.setState({
-            repeatPassword: e.target.value
+            [event.target.name]: event.target.value
         })
     }
 
@@ -88,7 +77,7 @@ class Registration extends React.Component {
             <form className='registration' id='reg'>
                 <h3>Sign up</h3>
                 <div>
-                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' value={this.state.login} spellCheck='false' onChange={this.handleChangeLogin} />
+                    <input type='text' name='login' autoComplete='off' placeholder='Enter login' value={this.state.login} spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
                     {this.state.errors.login ? <span>Check the correctness of the login</span> :
@@ -96,10 +85,10 @@ class Registration extends React.Component {
                             ''}
                 </div>
                 <div>
-                    <input type='password' name='password' autoComplete='off' value={this.state.password} placeholder='Enter password' spellCheck='false' onChange={this.handleChangePassword} />
+                    <input type='password' name='password' autoComplete='off' value={this.state.password} placeholder='Enter password' spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
-                    <input type='password' name='repeatPassword' autoComplete='off' value={this.state.repeatPassword} placeholder='Repeat password' spellCheck='false' onChange={this.handleChangeRepeatPassword} />
+                    <input type='password' name='repeatPassword' autoComplete='off' value={this.state.repeatPassword} placeholder='Repeat password' spellCheck='false' onChange={this.handleChange} />
                 </div>
                 <div>
                     {this.state.errors.password ? <span>The password must be more than 6 characters, include upper and lower case characters, and must include at least one digit.</span> :
